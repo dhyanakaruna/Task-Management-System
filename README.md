@@ -1,13 +1,5 @@
-To create the README in VSCode, you can follow these steps:
 
-1. Open **VSCode**.
-2. Navigate to your project folder (or create a new one if necessary).
-3. In the **Explorer** view, right-click on the root folder and select **New File**.
-4. Name the new file `README.md`.
-5. Copy and paste the following content into the `README.md` file:
-
-```markdown
-# Task Management Application with JWT Authentication
+# Task Management System
 
 ## Overview
 A task management application that allows users to log in and manage their tasks securely using JWT for authentication.
@@ -18,7 +10,6 @@ A task management application that allows users to log in and manage their tasks
 - **Database**: MongoDB
 
 ## Features
-- **User Registration**: Users can create an account by providing a username and password.
 - **User Login**: Users can log in to their accounts using their credentials.
 - **JWT Authentication**: 
   - Upon successful login, a JWT token is generated and sent to the client.
@@ -54,12 +45,11 @@ cd Task-Management-System/Task_Management
 
 3. **Create Environment Variables**: Create a `.env` file in the backend directory and add your JWT secret:
    ```txt
-   JWT_SECRET=your_jwt_secret
+   JWT_SECRET="generate a jwt secret and paste here"
    ```
 
 4. **Set Up MongoDB**:
-   - If you are using a local MongoDB instance, ensure it is running.
-   - If you are using MongoDB Atlas, create a cluster and get the connection string. Update your database connection in the backend code accordingly.
+   - In MongoDB Atlas, create a cluster and get the connection string. Update your database connection in the backend code accordingly.
 
 ### Step 3: Set Up the Frontend
 1. **Navigate to the Frontend Directory**:
@@ -74,7 +64,7 @@ cd Task-Management-System/Task_Management
 
 3. **Build the React App**: Create a production build of the React application:
    ```bash
-   npm run build
+   npm run dev
    ```
 
 ### Step 4: Run the Application
@@ -85,7 +75,7 @@ cd Task-Management-System/Task_Management
 
 2. **Start the Backend Server**: Run the following command to start the server:
    ```bash
-   node app.js
+   npm start
    ```
 
 3. **Access the Application**: Open your web browser and go to:
@@ -94,13 +84,14 @@ cd Task-Management-System/Task_Management
    ```
 
 ### Step 5: Using the Application
+
 1. **Log In**:
-   - Enter the username and password.
+   - Enter the registered username and password.
+   - Upon successful login, you will receive a JWT token.
 
 3. **View Profile**:
-   - After logging in, you can access the profile page to view your username and the task details.
+   - After logging in, you can access the profile page to view your username.
 
 ## Troubleshooting
 - **CORS Issues**: Ensure that CORS is properly configured in the backend to allow requests from your frontend.
 - **Environment Variables**: Make sure the `.env` file is correctly set up and that you restart the server after making changes to it.
-
