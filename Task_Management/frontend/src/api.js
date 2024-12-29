@@ -1,20 +1,22 @@
 import { API_URL } from "./utils";
 
-export const registerUser = async (userObj) => {
-    const url = `${API_URL}/auth/register`;
-    const options = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(userObj)
-    };
+// api.js
+
+export const registerUser = async ({ username, password }) => {
     try {
-        const result = await fetch(url, options);
-        const data = await result.json();
+        const response = await fetch(`${API_URL}/auth/register`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password }),
+        });
+        const data = await response.json();
         return data;
-    } catch (err) {
-        return err;
+    } catch (error) {
+        console.error('Error registering user:', error);
+        return { success: false, message: 'An error occurred during registration' };
     }
 };
+
 
 export const loginUser = async (userObj) => {
     const url = `${API_URL}/auth/login`;
