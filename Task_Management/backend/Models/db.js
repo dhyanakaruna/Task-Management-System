@@ -7,7 +7,6 @@ mongoose.connect(DB_URL)
     .then(async () => {
         console.log('MongoDB is Connected...');
         
-        // Seed default user
         const defaultUser = { username: 'admin', password: 'admin' };
         const existingUser = await UserModel.findOne({ username: defaultUser.username });
         if (!existingUser) {
