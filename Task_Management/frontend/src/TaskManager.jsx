@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaCheck, FaPencilAlt, FaPlus, FaSearch, FaTrash } from 'react-icons/fa';
+import { FaCheck, FaPencilAlt, FaPlus, FaTrash } from 'react-icons/fa';
 import { ToastContainer } from 'react-toastify';
 import { CreateTask, DeleteTaskById, GetAllTasks, UpdateTaskById } from './api';
 import { notify } from './utils';
@@ -46,7 +46,6 @@ function TaskManager() {
 
     const fetchTasks = async () => {
         const response = await GetAllTasks();
-        console.log(response); // Log the response to check its structure
         if (response.success && Array.isArray(response.data)) {
             setTasks(response.data);
             setCopyTasks(response.data);
@@ -88,42 +87,42 @@ function TaskManager() {
     return (
         <div className="container mx-auto mt-5">
             <ToastContainer />
-            <h1 className="text-2xl font-bold mb-4">Task Manager</h1>
-            <div className="mb-4">
+            <h1 className="text-3xl font-bold text-center mb-6 text-blue-600">Task Manager</h1>
+            <div className="mb-4 flex justify-center">
                 <input
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    className="border p-2 mr-2"
+                    className="border border-gray-300 p-2 rounded-l-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Add a new task"
                 />
                 <select
                     value={status}
                     onChange={(e) => setStatus(e.target.value)}
-                    className="border p-2 mr-2"
+                    className="border border-gray-300 p-2 rounded-md shadow-md mx-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                     <option value="Pending">Pending</option>
                     <option value="In Progress">In Progress</option>
                     <option value="Completed">Completed</option>
                 </select>
-                <button onClick={handleTask} className="bg-blue-500 text-white p-2">
+                <button onClick={handleTask} className="bg-blue-500 text-white p-2 rounded-md shadow-md hover:bg-blue-600 transition duration-200">
                     {updateTask ? 'Update Task' : 'Add Task'} <FaPlus />
                 </button>
             </div>
-            <div className="mb-4">
-                <button onClick={() => filterTasks('Pending')} className="bg-gray-300 p-2 mr-2">Pending</button>
-                <button onClick={() => filterTasks('In Progress')} className="bg-gray-300 p-2 mr-2">In Progress</button>
-                <button onClick={() => filterTasks('Completed')} className="bg-gray-300 p-2">Completed</button>
+            <div className="mb-4 flex justify-center space-x-2">
+                <button onClick={() => filterTasks('Pending')} className="bg-gray-300 p-2 rounded-md hover:bg-gray-400 transition duration-200">Pending</button>
+                <button onClick={() => filterTasks('In Progress')} className="bg-gray-300 p-2 rounded-md hover:bg-gray-400 transition duration-200">In Progress</button>
+                <button onClick={() => filterTasks('Completed')} className="bg-gray-300 p-2 rounded-md hover:bg-gray-400 transition duration-200">Completed</button>
             </div>
             <ul className="list-none">
                 {tasks.map(task => (
-                    <li key={task._id} className="flex justify-between items-center border-b py-2">
-                        <span className ="flex-1">{task.taskName} - {task.status}</span>
+                    <li key={task._id} className="flex justify-between items-center border-b py-2 hover:bg-gray-100 transition duration-200">
+                        <span className={`flex-1 ${task.status === 'Completed' ? 'line-through text-gray-500' : ''}`}>{task.taskName} - {task.status}</span>
                         <div>
-                            <button onClick={() => setUpdateTask(task)} className="text-yellow-500 mr-2">
+                            <button onClick={() => setUpdateTask(task)} className="text-yellow-500 mr-2 hover:text-yellow-600 transition duration-200">
                                 <FaPencilAlt />
                             </button>
-                            <button onClick={() => handleDeleteTask(task._id)} className="text-red-500">
+                            <button onClick={() => handleDeleteTask(task._id)} className="text-red-500 hover:text-red-600 transition duration-200">
                                 <FaTrash />
                             </button>
                         </div>

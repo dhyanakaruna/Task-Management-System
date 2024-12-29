@@ -17,3 +17,6 @@ app.use('/tasks', TaskRouter);
 app.listen(PORT, () => {
     console.log(`Server is running on PORT =${PORT}`);
 });
+
+const AuthRouter = require('./Routes/AuthRouter');
+app.use('/auth', AuthRouter);

@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 
-export const API_URL = 'http://localhost:8080'; // Adjust this URL based on your backend
+export const API_URL = 'http://localhost:8080';
 
 export const notify = (message, type) => {
     switch (type) {
